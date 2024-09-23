@@ -1,56 +1,125 @@
-<h1> AirBnB_clone </h1>
+<center> <h1>HBNB - The Console</h1> </center>
 
-The goal of the project is to deploy on your server a simple copy of the AirBnB website.
+This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
-The AirBnB website operates an online marketplace for travel information and booking services. The Company offers lodging, home-stay, and tourism services via websites and mobile applications. Airbnb serves clients worldwide.
+---
 
-<h2>Files and Directories</h2>
+<center> <h2>General Use</h2> </center>
 
-* <b>models</b> directory will contain all classes used for the entire project. A class, called “model” in a OOP project is the representation of an object/instance.
+1. First clone this repository.
 
-* <b>tests directory</b> will contain all unit tests.
+3. Once the repository is cloned locate the "console.py" file and run it as follows:
+```
+/AirBnB_clone$ ./console.py
+```
+4. When this command is run the following prompt should appear:
+```
+(hbnb)
+```
+5. This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
 
-* <b>console.py</b> file is the entry point of our command interpreter.
+##### Commands
+    * create - Creates an instance based on given class
 
-* <b>models/base_model.py</b> file is the base class of all our models. It contains common elements:
+    * destroy - Destroys an object based on class and UUID
 
-* <b>attributes:</b> id, created_at and updated_at
+    * show - Shows an object based on class and UUID
 
-* <b>methods:</b> save() and to_json()
+    * all - Shows all objects the program has access to, or all objects of a given class
 
-* <b>models/engine</b> directory will contain all storage classes (using the same prototype). For the moment you will have only one: file_storage.py**
+    * update - Updates existing attributes an object based on class name and UUID
 
-<h2> Steps </h2>
+    * quit - Exits the program (EOF will as well)
 
-<h3>The console</h3>
 
-* create your data model
-* manage (create, update, destroy, etc) objects via a console / command interpreter
-* store and persist objects to a file (JSON file)
+##### Alternative Syntax
+Users are able to issue a number of console command using an alternative syntax:
 
-The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself) and from the front-end and RestAPI you will build later, you won’t have to pay attention (take care) of how your objects are stored.
+	Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
+Advanced syntax is implemented for the following commands: 
 
-This abstraction will also allow you to change the type of storage easily without updating all of your codebase.
+    * all - Shows all objects the program has access to, or all objects of a given class
 
-The console will be a tool to validate this storage engine.
+	* count - Return number of object instances by class
 
-<h3> Web static </h3>
+    * show - Shows an object based on class and UUID
 
-* learn HTML/CSS
-* create the HTML of your application
-* create template of each object
+	* destroy - Destroys an object based on class and UUID
 
-<h3>MySQL storage</h3>
+    * update - Updates existing attributes an object based on class name and UUID
 
-* replace the file storage by a Database storage
-* map your models to a table in database by using an O.R.M.
+<br>
+<br>
+<center> <h2>Examples</h2> </center>
+<h3>Primary Command Syntax</h3>
 
-<h3>Web framework - templating</h3>
+###### Example 0: Create an object
+Usage: create <class_name>
+```
+(hbnb) create BaseModel
+```
+```
+(hbnb) create BaseModel
+3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb)                   
+```
+###### Example 1: Show an object
+Usage: show <class_name> <_id>
 
-* create your first web server in Python
-* make your static HTML file dynamic by using objects stored in a file or database
+```
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959), 
+'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
+(hbnb)  
+```
+###### Example 2: Destroy an object
+Usage: destroy <class_name> <_id>
+```
+(hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+** no instance found **
+(hbnb)   
+```
+###### Example 3: Update an object
+Usage: update <class_name> <_id>
+```
+(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
+(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
+[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889), 
+'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
+(hbnb)
+```
+<h3>Alternative Syntax</h3>
 
-<h3> RESTful API </h3>
+###### Example 0: Show all User objects
+Usage: <class_name>.all()
+```
+(hbnb) User.all()
+["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
 
-* expose all your objects stored via a JSON web interface
-* manipulate your objects via a RESTful API
+###### Example 1: Destroy a User
+Usage: <class_name>.destroy(<_id>)
+```
+(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 2: Update User (by attribute)
+Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 3: Update User (by dictionary)
+Usage: <class_name>.update(<_id>, <dictionary>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+<br>
