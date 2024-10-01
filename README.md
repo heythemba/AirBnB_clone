@@ -1,56 +1,80 @@
-<h1> AirBnB_clone </h1>
+# AirBnB_clone - The Console
+![image](https://user-images.githubusercontent.com/106776383/203980085-11fbf721-1f19-4e74-a98c-7f635313c518.png)
 
-The goal of the project is to deploy on your server a simple copy of the AirBnB website.
+[AirBnB Clone - The Console](https://alx-intranet.hbtn.io/concepts/74)
 
-The AirBnB website operates an online marketplace for travel information and booking services. The Company offers lodging, home-stay, and tourism services via websites and mobile applications. Airbnb serves clients worldwide.
+For further information, click on the above link
 
-<h2>Files and Directories</h2>
+## Airbnb Clone - Structure
+![image](https://user-images.githubusercontent.com/106776383/203980933-3d854fbf-df95-42fc-bfde-de5d40828dfb.png)
 
-* <b>models</b> directory will contain all classes used for the entire project. A class, called “model” in a OOP project is the representation of an object/instance.
+## UML - Airbnb Console
+![image](https://user-images.githubusercontent.com/106776383/203981127-0ae49d24-e736-40f7-a366-cfeb7b86c4db.png)
 
-* <b>tests directory</b> will contain all unit tests.
+## Contents:
+* Project Description
+* General Objetives
+* Command Interpreter Description
+  - How to start it
+  - Commands and their usage
+  - How to use it
+  - examples
+* Unittests
 
-* <b>console.py</b> file is the entry point of our command interpreter.
+## Project Description
+Airbnb Clone is the main project of the second trimester at Holberton School. The aim is to develop an entire web application that simulates the behavior of the Airbnb platform. Starting from the console or command interpreter, to manipulate data without a visual interface, like in a Shell (perfect for development and debugging), followed by the construction of a website (the front-end) that shows the final product to everybody: static and dynamic, once it's finished what follows is the connection with the database or files that store data (data = objects). And last but not least, the creation of an API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them).
 
-* <b>models/base_model.py</b> file is the base class of all our models. It contains common elements:
+## General Objetives
+* How to create a Python package
+* How to create a command interpreter in Python using the cmd module
+* What is Unit testing and how to implement it in a large project
+* How to serialize and deserialize a Class
+* How to write and read a JSON file
+* How to manage datetime
+* What is an UUID
+* What is *args and how to use it
+* What is **kwargs and how to use it
+* How to handle named arguments in a function
 
-* <b>attributes:</b> id, created_at and updated_at
+## Command Interpreter Description
+* How to start it
+  - Follow the instructions to get a copy of the program and run in your local machine:
 
-* <b>methods:</b> save() and to_json()
+    Clone the following repository.
+    `https://github.com/HibeeK/AirBnB_clone.git`
 
-* <b>models/engine</b> directory will contain all storage classes (using the same prototype). For the moment you will have only one: file_storage.py**
+    Run the program
+    `./console.py`
 
-<h2> Steps </h2>
+* Commands and their usage
 
-<h3>The console</h3>
+| Command |	Usage |	Example | Description |
+| ------- | ----- | ------- | ----------- |
+| create | `create <class name>` | create BaseModel | Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. |
+| show | `show <class name>` | <id>	show BaseModel 1234-1234-1234 |	Prints the string representation of an instance based on the class name and id. |
+| destroy |	`destroy <class name>` | <id>	destroy BaseModel 1234-1234-1234 |	Deletes an instance based on the class name and id (save the change into the JSON file). |
+| all |	`all <class name> or all` |	all BaseModel |	Prints all string representation of all instances based or not on the class name. |
+| update |	`update <class name> <id> <attribute name> "<attribute value>"` |	update BaseModel 1234-1234-1234 email "airbnb@holbertonschool.com" |	Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). |
+| all() |	`<class name>.all()` |	User.all() |	Retrieve all instances of a class |
+| count() |	`<class name>.count()` |	User.count() | Retrieve the number of instances of a class |
+| show() |	`<class name>.show(<id>)` |	User.show("246c227a-d5c1-403d-9bc7-6a47bb9f0f68") |	etrieve an instance based on its ID |
+| destroy() |	`<class name>.destroy(<id>)` |	User.destroy("246c227a-d5c1-403d-9bc7-6a47bb9f0f68") |	Destroy an instance based on his ID |
+| update() |	`<class name>.update(<id>, <attribute name>, <attribute value>)` |	User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "age", 89) |	Update an instance based on his ID |
+| update() with dictionary |	`<class name>.update(<id>, <dictionary representation>)` |	User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89}) |	Update an instance based on his ID with a dictionary |
 
-* create your data model
-* manage (create, update, destroy, etc) objects via a console / command interpreter
-* store and persist objects to a file (JSON file)
+## Prerequisites
+For further installation is necessary to set this program on Ubuntu 14.04 LTS using Vagrant in VirtualBox.
 
-The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself) and from the front-end and RestAPI you will build later, you won’t have to pay attention (take care) of how your objects are stored.
+You need to install this software
+```
+1. VirtualBox - Virtual Machine
+2. Vagrant
+3. Emacs
+4. Vim/Vi
+5. VSCode
+6. Usage: ./console.py
+```
 
-This abstraction will also allow you to change the type of storage easily without updating all of your codebase.
-
-The console will be a tool to validate this storage engine.
-
-<h3> Web static </h3>
-
-* learn HTML/CSS
-* create the HTML of your application
-* create template of each object
-
-<h3>MySQL storage</h3>
-
-* replace the file storage by a Database storage
-* map your models to a table in database by using an O.R.M.
-
-<h3>Web framework - templating</h3>
-
-* create your first web server in Python
-* make your static HTML file dynamic by using objects stored in a file or database
-
-<h3> RESTful API </h3>
-
-* expose all your objects stored via a JSON web interface
-* manipulate your objects via a RESTful API
+## Authors
+* [name](Haythem Bagann)a [Email](heythem.94@gmail.com)
+* [name](Racem Bouchnak) [Email](racem.bouchn@gmail.com)
