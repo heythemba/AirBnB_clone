@@ -76,5 +76,5 @@ You need to install this software
 ```
 
 ## Authors
-* [name](Haythem Bagann)a [Email](heythem.94@gmail.com)
-* [name](Racem Bouchnak) [Email](racem.bouchn@gmail.com)
+* Haythem Baganna [Email](heythem.94@gmail.com)
+* Racem Bouchnak [Email](racem.bouchn@gmail.com)
